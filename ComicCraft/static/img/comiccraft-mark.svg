@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="ComicCraft comic book mark">
-  <rect width="128" height="128" fill="#FBF7EE"/>
-  <path d="M24 24h55c14 0 25 11 25 25v50H49c-14 0-25-11-25-25V24Z" fill="#1E2024"/>
-  <path d="M34 34h43c9 0 17 8 17 17v38H51c-9 0-17-8-17-17V34Z" fill="#3559E8"/>
-  <path d="M52 52h28v9H52zm0 17h28v9H52z" fill="#FBF7EE"/>
-  <path d="m87 88 20 12-16 2-7 14-7-18z" fill="#F16D52" stroke="#1E2024" stroke-width="4" stroke-linejoin="round"/>
-</svg>

@@ -1,8 +1,0 @@
-{
-  "routes": [
-    { "path": "/", "title": "ComicCraft Story Studio" },
-    { "path": "/generate", "title": "Generate a Comic" },
-    { "path": "/preview/:comic_id", "title": "Comic Preview" },
-    { "path": "/export-success", "title": "Export Success" }
-  ]
-}

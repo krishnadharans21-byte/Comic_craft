@@ -1,1 +1,0 @@
-"""ComicCraft FastAPI application package."""
