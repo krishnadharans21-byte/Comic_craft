@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fbf7ee">
+  <meta name="description" content="Turn a story idea into a connected five-panel comic with ComicCraft.">
+  <title>ComicCraft — Your idea, frame by frame</title>
+  <link rel="icon" type="image/svg+xml" href="/static/img/comiccraft-mark.svg">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script defer src="/static/js/app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="ComicCraft home">
+      <img src="/static/img/comiccraft-mark.svg" alt="" width="42" height="42">
+      <span>Comic<span class="brand-accent">Craft</span></span>
+    </a>
+    <nav class="header-nav" aria-label="Main navigation">
+      <a href="#how-it-works">How it works</a>
+      <a class="nav-cta" href="/docs" target="_blank" rel="noreferrer">API docs <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero page-width">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> YOUR IDEA, FRAME BY FRAME</p>
+        <h1>A little idea.<br><span class="headline-accent">A whole comic.</span></h1>
+        <p class="hero-lede">Dream up a hero, pick a world, and let ComicCraft turn your spark into a five-panel story worth sharing.</p>
+        <div class="hero-points" aria-label="ComicCraft features">
+          <span><b>01</b> Story</span><span><b>02</b> Art</span><span><b>03</b> PDF</span>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="comic-sample sample-back"><span>WHAT IF…?</span><i></i></div>
+        <div class="comic-sample sample-front">
+          <span class="sample-burst">POW!</span>
+          <div class="sample-sun"></div><div class="sample-hill hill-one"></div><div class="sample-hill hill-two"></div>
+          <div class="sample-caption">A new adventure begins</div>
+        </div>
+        <span class="spark spark-one">✦</span><span class="spark spark-two">✳</span>
+        <span class="art-note">YOUR STORY<br>STARTS HERE</span>
+      </div>
+    </section>
+
+    <section class="creator page-width" id="create">
+      <div class="creator-intro">
+        <p class="eyebrow">THE STORY STUDIO</p>
+        <h2>Set the scene.</h2>
+        <p>Give us the ingredients. We’ll help bring the panels to life.</p>
+        <div class="key-status" role="status">
+          <span class="status-icon" aria-hidden="true">{% if gemini_configured %}✦{% else %}◌{% endif %}</span>
+          <div>
+            <strong>{% if gemini_configured %}Gemini is connected{% else %}Demo mode is ready{% endif %}</strong>
+            <p>{% if gemini_configured %}Your Gemini key is set. {% else %}No API key needed to try it. {% endif %}{% if image_configured %}AI illustrations are enabled.{% else %}Add a Hugging Face token for AI illustrations.{% endif %}</p>
+          </div>
+        </div>
+        <div class="mini-note"><span aria-hidden="true">↳</span> Five panels. One complete story. Yours to keep.</div>
+      </div>
+
+      <form class="creator-form" action="/generate" method="post" id="comic-form">
+        <div class="form-heading"><span class="step-label">YOUR CREATIVE BRIEF</span><span class="required-note">All fields required</span></div>
+        <label for="story_prompt">What happens in your story? <span class="required-star">*</span></label>
+        <textarea id="story_prompt" name="story_prompt" maxlength="1200" minlength="3" required placeholder="A shy little dragon finds a map to the sunken library…">A curious fox finds a glowing compass that points toward whatever needs help.</textarea>
+        <div class="field-meta"><span>Start with a simple idea—we’ll build the arc.</span><span id="prompt-count">0 / 1200</span></div>
+
+        <div class="form-row">
+          <div class="field-group">
+            <label for="character_name">Main character <span class="required-star">*</span></label>
+            <input id="character_name" name="character_name" type="text" maxlength="80" required value="Pip" placeholder="e.g. Pip the fox">
+          </div>
+          <div class="field-group">
+            <label for="setting">Setting <span class="required-star">*</span></label>
+            <input id="setting" name="setting" type="text" maxlength="80" required value="an enchanted forest" placeholder="e.g. a moonlit city">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field-group">
+            <label for="tone">Story tone <span class="required-star">*</span></label>
+            <select id="tone" name="tone" required>
+              <option>Adventurous</option><option>Funny</option><option>Mysterious</option><option>Heartwarming</option><option>Dramatic</option><option>Whimsical</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label for="art_style">Art style <span class="required-star">*</span></label>
+            <select id="art_style" name="art_style" required>
+              <option>Classic comic book</option><option>Anime</option><option>Watercolor storybook</option><option>Pixel art</option><option>Bold cartoon</option><option>Graphic novel</option>
+            </select>
+          </div>
+        </div>
+        <button class="button button-primary generate-button" type="submit">
+          <span class="button-star" aria-hidden="true">✦</span><span class="button-label">Make my comic</span><span aria-hidden="true">→</span>
+        </button>
+        <p class="form-footnote"><span aria-hidden="true">▣</span> Your comic is made for you. Export it as a printable PDF.</p>
+      </form>
+    </section>
+
+    <section class="how page-width" id="how-it-works">
+      <div class="section-heading"><p class="eyebrow">FROM IDEA TO INK</p><h2>Three steps to story time.</h2></div>
+      <div class="steps-grid">
+        <article class="step-card"><span class="step-number">01</span><span class="step-icon icon-idea" aria-hidden="true">✎</span><h3>Set your scene</h3><p>Tell us who, where, and what kind of adventure you have in mind.</p></article>
+        <article class="step-card"><span class="step-number">02</span><span class="step-icon icon-panels" aria-hidden="true">▤</span><h3>Meet your panels</h3><p>Get a connected five-panel story with narration, dialogue, and illustrations.</p></article>
+        <article class="step-card"><span class="step-number">03</span><span class="step-icon icon-export" aria-hidden="true">↓</span><h3>Keep your comic</h3><p>Preview the whole story and save a ready-to-print PDF.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer page-width"><a class="brand footer-brand" href="/"><img src="/static/img/comiccraft-mark.svg" alt="" width="30" height="30"><span>Comic<span class="brand-accent">Craft</span></span></a><span>Made for the stories in your head.</span><a href="/docs" target="_blank" rel="noreferrer">Build with the API ↗</a></footer>
+
+  <div class="loading-overlay" id="loading-overlay" aria-hidden="true">
+    <div class="loading-card" role="status" aria-live="polite">
+      <div class="loading-book" aria-hidden="true"><span></span><span></span><span></span></div>
+      <p class="eyebrow">INKING YOUR IDEA</p><h2>Making a little magic…</h2><p>Building five story beats and bringing your panels together.</p>
+      <div class="loading-track"><span></span></div><p class="loading-small">Image generation can take a little while. Please keep this tab open.</p>
+    </div>
+  </div>
+</body>
+</html>
